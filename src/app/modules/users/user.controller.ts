@@ -1,7 +1,7 @@
-import { NextFunction, Request, Response } from 'express'
+import { RequestHandler } from 'express'
 import userServices from './user.services'
 
-const createUser = async (req: Request, res: Response, next: NextFunction) => {
+const createUser: RequestHandler = async (req, res, next) => {
   try {
     const { user } = req.body
     console.log(user)
