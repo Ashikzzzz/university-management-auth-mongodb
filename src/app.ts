@@ -18,7 +18,8 @@ app.use('/api/v1/user', userRoute)
 
 // //Testing
 // app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-//   Promise.reject(new Error('Unhandled Promise Rejected'))
+//   //   Promise.reject(new Error('Unhandled Promise Rejected'))
+//   throw new Error('Testing errro logger')
 // })
 
 app.use(globalErrorHandler)

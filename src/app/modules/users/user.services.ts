@@ -15,13 +15,13 @@ const createUserService = async (user: IUser): Promise<IUser | null> => {
   }
 
   const createdUser = await User.create(user)
-  console.log('createdUser', createdUser)
+  // console.log('createdUser', createdUser)
   if (!createdUser) {
     throw new ApiError(400, 'User created failed')
   }
   return createdUser
 }
 
-export default {
+export const userService = {
   createUserService,
 }
