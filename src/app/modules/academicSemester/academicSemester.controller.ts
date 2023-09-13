@@ -3,7 +3,7 @@ import { academicSemesterService } from './academicSemester.service';
 
 const createAcademicSemester: RequestHandler = async (req, res, next) => {
   try {
-    const { ...academicSemesterData } = req.body;
+    const academicSemesterData = req.body;
     console.log(academicSemesterData);
     const result =
       await academicSemesterService.createAcademicSemester(

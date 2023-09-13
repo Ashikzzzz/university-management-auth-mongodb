@@ -15,7 +15,7 @@ type Month =
   | 'December';
 
 export type IAcademicSemester = {
-  title: 'Autumn' | 'Summer' | 'Fall';
+  title: 'Spring' | 'Summer' | 'Fall';
   year: number;
   code: '01' | '02' | '03';
   startMonth: Month;

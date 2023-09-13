@@ -3,6 +3,8 @@ import {
   AcademicSemesterModel,
   IAcademicSemester,
 } from './academicSemester.interface';
+import ApiError from '../../../errors/ApiErrors';
+import status from 'http-status';
 
 const Month = [
   'January',
@@ -44,6 +46,18 @@ const academicSemesterSchema = new Schema<IAcademicSemester>({
     required: true,
     enum: Month,
   },
+});
+
+// checking not same semester at same year
+academicSemesterSchema.pre('save', async function (next) {
+  const isExist = await AcademicSemester.findOne({
+    title: this.title,
+    year: this.year,
+  });
+  if (isExist) {
+    throw new ApiError(status.CONFLICT, 'Semester is already Exists');
+  }
+  next();
 });
 
 // 3. Create a Model.
