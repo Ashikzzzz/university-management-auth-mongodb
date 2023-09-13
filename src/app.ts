@@ -4,8 +4,9 @@ const app: Application = express();
 
 app.use(cors());
 
-import userRoute from './app/modules/users/user.route';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
+import { SemesterRoute } from './app/modules/academicSemester/academicSemester.route';
+import { userRoute } from './app/modules/users/user.route';
 // import ApiError from './errors/ApiErrors'
 // import ApiError from './errors/ApiErrors'
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // user router
 app.use('/api/v1/user', userRoute);
+app.use('/api/v1/semester', SemesterRoute);
 
 // //Testing
 // app.get('/', async (req: Request, res: Response, next: NextFunction) => {
