@@ -47,7 +47,7 @@ const academicSemesterSchema = new Schema<IAcademicSemester>({
 });
 
 // 3. Create a Model.
-export const User = model<IAcademicSemester, AcademicSemesterModel>(
+export const AcademicSemester = model<IAcademicSemester, AcademicSemesterModel>(
   'AcademicSemester',
   academicSemesterSchema,
 );
