@@ -4,7 +4,17 @@ import { SemesterRoute } from '../modules/academicSemester/academicSemester.rout
 
 const router = express.Router();
 
-router.use('/user', userRoute);
-router.use('/semester', SemesterRoute);
+const moduleRoutes = [
+  {
+    path: '/user',
+    route: userRoute,
+  },
+  {
+    path: '/semester',
+    route: SemesterRoute,
+  },
+];
+
+moduleRoutes.map(route => router.use(route.path, route.route));
 
 export default router;
