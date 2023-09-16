@@ -1,8 +1,10 @@
 import { academicSemesterService } from './academicSemester.service';
 import catchAsync from '../../../shared/catchAsync';
 import { NextFunction, Request, Response } from 'express';
-import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
+import { IAcademicSemester } from './academicSemester.interface';
+import pick from '../../../shared/pick';
+import { responseForData } from '../../../shared/sendResponse';
 
 // create a semester
 const createAcademicSemester = catchAsync(
@@ -13,7 +15,7 @@ const createAcademicSemester = catchAsync(
       await academicSemesterService.createAcademicSemester(
         academicSemesterData,
       );
-    sendResponse(res, {
+    responseForData.sendResponseForCreate<IAcademicSemester>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: 'Academic Semester created Successful',
@@ -23,24 +25,27 @@ const createAcademicSemester = catchAsync(
   },
 );
 
-// get all semester with pagination
+// get all semester
 const getAllSemester = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const paginationOptions = {
-      page: Number(req.query.page),
-      limit: Number(req.query.limit),
-      sortBy: String(req.query.sortBy),
-      sortOrder: Number(req.query.sortOrder),
-    };
+    const paginationOption = pick(req.query, [
+      'limit',
+      'page',
+      'sortBy',
+      'sortOrder',
+    ]);
 
-    console.log(paginationOptions);
+    console.log(paginationOption);
+
     const result =
-      await academicSemesterService.getAllSemester(paginationOptions);
-    sendResponse(res, {
+      await academicSemesterService.getAllSemester(paginationOption);
+
+    responseForData.sendResponse<IAcademicSemester[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Academic Semester getting Successful',
-      data: result,
+      message: 'Academic Semester Getting Successful',
+      data: result.data,
+      meta: result.meta,
     });
     next();
   },

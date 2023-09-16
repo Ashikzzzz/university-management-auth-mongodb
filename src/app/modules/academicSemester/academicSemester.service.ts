@@ -1,6 +1,6 @@
 import ApiError from '../../../errors/ApiErrors';
-import { SemesterResponse } from '../../../interfaces/common';
-import { IPaginationOptions } from '../../../interfaces/pagination';
+import { IGenericResponse } from '../../../interfaces/common';
+import { IPaginationOption } from '../../../interfaces/pagination';
 import { IAcademicSemester } from './academicSemester.interface';
 import { AcademicSemester } from './academicSemester.model';
 import status from 'http-status';
@@ -24,17 +24,20 @@ const createAcademicSemester = async (
 
 // get all semester
 const getAllSemester = async (
-  paginationOptions: IPaginationOptions,
-): Promise<SemesterResponse> => {
-  const { page = 1, limit = 10 } = paginationOptions;
+  paginationOption: IPaginationOption,
+): Promise<IGenericResponse<IAcademicSemester[]>> => {
+  const { page = 1, limit = 10 } = paginationOption;
   const skip = (page - 1) * limit;
 
   const result = await AcademicSemester.find().sort().skip(skip).limit(limit);
   const total = await AcademicSemester.countDocuments();
-
   return {
-    result,
-    total,
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
   };
 };
 

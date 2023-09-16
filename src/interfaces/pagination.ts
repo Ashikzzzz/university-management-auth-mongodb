@@ -1,6 +1,6 @@
-export type IPaginationOptions = {
+export type IPaginationOption = {
   page?: number;
   limit?: number;
-  sortBy?: string;
-  sortOrder?: number;
+  sortBy?: number;
+  sortOrder?: 'asc' | 'desc';
 };
