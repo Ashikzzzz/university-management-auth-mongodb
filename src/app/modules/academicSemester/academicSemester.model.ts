@@ -21,32 +21,37 @@ const Month = [
   'December',
 ];
 
-const academicSemesterSchema = new Schema<IAcademicSemester>({
-  title: {
-    type: String,
-    required: true,
-    enum: ['Spring', 'Summer', 'Fall'],
+const academicSemesterSchema = new Schema<IAcademicSemester>(
+  {
+    title: {
+      type: String,
+      required: true,
+      enum: ['Spring', 'Summer', 'Fall'],
+    },
+    year: {
+      type: String,
+      required: true,
+    },
+    code: {
+      type: String,
+      required: true,
+      enum: ['01', '02', '03'],
+    },
+    startMonth: {
+      type: String,
+      required: true,
+      enum: Month,
+    },
+    endMonth: {
+      type: String,
+      required: true,
+      enum: Month,
+    },
   },
-  year: {
-    type: Number,
-    required: true,
+  {
+    timestamps: true,
   },
-  code: {
-    type: String,
-    required: true,
-    enum: ['01', '02', '03'],
-  },
-  startMonth: {
-    type: String,
-    required: true,
-    enum: Month,
-  },
-  endMonth: {
-    type: String,
-    required: true,
-    enum: Month,
-  },
-});
+);
 
 // checking not same semester at same year
 academicSemesterSchema.pre('save', async function (next) {

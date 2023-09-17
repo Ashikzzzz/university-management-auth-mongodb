@@ -3,82 +3,68 @@
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:50:08.897Z'
+  timestamp: '2023-09-16T16:02:20.699Z'
 }
 {
   message: 'app is listening in the 5000',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:50:08.935Z'
+  timestamp: '2023-09-16T16:02:20.714Z'
 }
 {
   message: 'database is connected successfully',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:51:36.806Z'
+  timestamp: '2023-09-16T16:03:37.470Z'
 }
 {
   message: 'app is listening in the 5000',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:51:36.831Z'
+  timestamp: '2023-09-16T16:03:37.481Z'
 }
 {
   message: 'database is connected successfully',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:51:59.233Z'
+  timestamp: '2023-09-16T16:03:51.880Z'
 }
 {
   message: 'app is listening in the 5000',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:51:59.246Z'
+  timestamp: '2023-09-16T16:03:51.892Z'
 }
 {
   message: 'database is connected successfully',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:52:51.282Z'
+  timestamp: '2023-09-16T16:03:57.395Z'
 }
 {
   message: 'app is listening in the 5000',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:52:51.293Z'
+  timestamp: '2023-09-16T16:03:57.455Z'
 }
 {
   message: 'database is connected successfully',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:57:59.405Z'
+  timestamp: '2023-09-16T16:06:57.638Z'
 }
 {
   message: 'app is listening in the 5000',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-16T15:57:59.419Z'
-}
-{
-  message: 'database is connected successfully',
-  level: 'info',
-  service: 'user-service',
-  label: 'university Management',
-  timestamp: '2023-09-16T15:59:30.951Z'
-}
-{
-  message: 'app is listening in the 5000',
-  level: 'info',
-  service: 'user-service',
-  label: 'university Management',
-  timestamp: '2023-09-16T15:59:30.963Z'
+  timestamp: '2023-09-16T16:06:57.651Z'
 }
