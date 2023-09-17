@@ -7,6 +7,7 @@ import ApiError from '../../errors/ApiErrors';
 import { errorLogger } from '../../shared/logger';
 import { ZodError } from 'zod';
 import handleZodError from '../../errors/handleZodError';
+import handleCastError from '../../errors/handleCastError';
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   config.env === 'development'
@@ -20,6 +21,14 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   // checking validtion error
   if (error?.name === 'ValidationError') {
     const simplifiedError = handleValidationError(error);
+    (statusCode = simplifiedError.statusCode),
+      (message = simplifiedError.message),
+      (errorMessage = simplifiedError.errorMessage);
+  }
+
+  //checking mongoose cast error
+  else if (error?.name === 'CastError') {
+    const simplifiedError = handleCastError(error);
     (statusCode = simplifiedError.statusCode),
       (message = simplifiedError.message),
       (errorMessage = simplifiedError.errorMessage);
