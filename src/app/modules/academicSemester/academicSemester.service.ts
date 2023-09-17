@@ -47,6 +47,16 @@ const getAllSemester = async (
     });
   }
 
+  // this is for filter part
+
+  if (Object.keys(filtersData).length) {
+    andCconditions.push({
+      $and: Object.entries(filtersData).map(([field, value]) => ({
+        [field]: value,
+      })),
+    });
+  }
+
   // const andCconditions = [
   //   {
   //     $or: [
