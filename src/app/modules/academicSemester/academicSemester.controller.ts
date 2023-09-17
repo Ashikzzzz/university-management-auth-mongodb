@@ -1,6 +1,6 @@
 import { academicSemesterService } from './academicSemester.service';
 import catchAsync from '../../../shared/catchAsync';
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import { IAcademicSemester } from './academicSemester.interface';
 import pick from '../../../shared/pick';
@@ -25,7 +25,7 @@ const createAcademicSemester = catchAsync(
   },
 );
 
-// get all semester
+// get all semester with pagination sorting filter and search
 const getAllSemester = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, ['searchTerm', 'title', 'code', 'year']);
   const paginationOption = pick(req.query, [
@@ -50,7 +50,21 @@ const getAllSemester = catchAsync(async (req: Request, res: Response) => {
   // next();
 });
 
+// get a single semester
+const getASingleSemester = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await academicSemesterService.getASingleSemester(id);
+
+  responseForData.sendResponseForCreate<IAcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semester Getting Successful',
+    data: result,
+  });
+});
+
 export const academicSemesterController = {
   createAcademicSemester,
   getAllSemester,
+  getASingleSemester,
 };

@@ -28,7 +28,6 @@ const createAcademicSemester = async (
 // get all semester
 const getAllSemester = async (
   filters: IAcademicSemesterFilters,
-
   paginationOption: IPaginationOption,
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
   const { searchTerm, ...filtersData } = filters;
@@ -57,40 +56,15 @@ const getAllSemester = async (
     });
   }
 
-  // const andCconditions = [
-  //   {
-  //     $or: [
-  //       {
-  //         title: {
-  //           $regex: searchTerm,
-  //           $options: 'i',
-  //         },
-  //       },
-  //       {
-  //         code: {
-  //           $regex: searchTerm,
-  //           $options: 'i',
-  //         },
-  //       },
-  //       {
-  //         year: {
-  //           $regex: searchTerm,
-  //           $options: 'i',
-  //         },
-  //       },
-  //     ],
-  //   },
-  // ];
-
-  // const whereConditions =
-  //   andCconditions.length > 0 ? { $and: andCconditions } : {};
+  const whereConditions =
+    andCconditions.length > 0 ? { $and: andCconditions } : {};
 
   // this is for pagination
 
   const { page = 1, limit = 10 } = paginationOption;
   const skip = (page - 1) * limit;
 
-  const result = await AcademicSemester.find({ $and: andCconditions })
+  const result = await AcademicSemester.find(whereConditions)
     .sort({
       createdAt: 'desc',
       year: 'desc',
@@ -109,7 +83,16 @@ const getAllSemester = async (
   };
 };
 
+// get a single semester
+const getASingleSemester = async (
+  id: string,
+): Promise<IAcademicSemester | null> => {
+  const result = await AcademicSemester.findById(id);
+  return result;
+};
+
 export const academicSemesterService = {
   createAcademicSemester,
   getAllSemester,
+  getASingleSemester,
 };

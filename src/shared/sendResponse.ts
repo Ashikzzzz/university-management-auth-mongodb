@@ -31,6 +31,7 @@ const sendResponse = <T>(res: Response, data: IApiResponse<T>): void => {
   res.status(data.statusCode).json(responseData);
 };
 
+// response for create
 const sendResponseForCreate = <T>(
   res: Response,
   data: IApiResponseForCreate<T>,
