@@ -96,6 +96,15 @@ const updateSemeter = async (
   id: string,
   payload: Partial<IAcademicSemester>,
 ) => {
+  if (
+    !(
+      (payload.title === 'Spring' && payload.code === '01') ||
+      (payload.title === 'Summer' && payload.code === '02') ||
+      (payload.title === 'Fall' && payload.code === '03')
+    )
+  ) {
+    throw new ApiError(status.BAD_REQUEST, 'Invalid Semester Code');
+  }
   const result = await AcademicSemester.findOneAndUpdate({ _id: id }, payload, {
     new: true,
   });

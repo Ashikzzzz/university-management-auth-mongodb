@@ -15,7 +15,11 @@ router.post(
 router.get('/:id', academicSemesterController.getASingleSemester);
 
 // update SemesterRoute
-router.patch('/:id', academicSemesterController.updateSemester);
+router.patch(
+  '/:id',
+  validateRequest(academicSemesterValidation.updateSemesterZodSchema),
+  academicSemesterController.updateSemester,
+);
 
 // get all semester with pagination sorting filter and search
 router.get('/get-all-semester', academicSemesterController.getAllSemester);
