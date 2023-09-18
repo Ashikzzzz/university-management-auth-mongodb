@@ -21,6 +21,8 @@ router.patch(
   academicSemesterController.updateSemester,
 );
 
+router.delete('/:id', academicSemesterController.deleteSemester);
+
 // get all semester with pagination sorting filter and search
 router.get('/get-all-semester', academicSemesterController.getAllSemester);
 

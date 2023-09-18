@@ -111,9 +111,18 @@ const updateSemeter = async (
   return result;
 };
 
+// delete a semester
+const deleteSemester = async (
+  id: string,
+): Promise<IAcademicSemester | null> => {
+  const result = await AcademicSemester.findByIdAndDelete(id);
+  return result;
+};
+
 export const academicSemesterService = {
   createAcademicSemester,
   getAllSemester,
   getASingleSemester,
   updateSemeter,
+  deleteSemester,
 };
