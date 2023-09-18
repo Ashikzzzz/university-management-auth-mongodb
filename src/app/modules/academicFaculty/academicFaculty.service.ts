@@ -72,7 +72,16 @@ const getAllFaculty = async (
   };
 };
 
+// get a single faculty
+const getASingleFaculty = async (
+  id: string,
+): Promise<IAcademicFaculty | null> => {
+  const result = await AcademicFaculty.findById(id);
+  return result;
+};
+
 export const academicFacultyService = {
   createAcademicFaculty,
   getAllFaculty,
+  getASingleFaculty,
 };

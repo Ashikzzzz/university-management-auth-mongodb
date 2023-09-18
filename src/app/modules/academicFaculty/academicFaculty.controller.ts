@@ -23,6 +23,7 @@ const createAcademicFaculty = catchAsync(
   },
 );
 
+// get all faculty with pagination filters search
 const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, ['searchTerm', 'title', 'code', 'year']);
   const paginationOption = pick(req.query, [
@@ -47,7 +48,21 @@ const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
   // next();
 });
 
+// get a single faculty
+const getASingleFaculty = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await academicFacultyService.getASingleFaculty(id);
+
+  responseForData.sendResponseForCreate<IAcademicFaculty>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semester Getting Successful',
+    data: result,
+  });
+});
+
 export const academicFacultyController = {
   createAcademicFaculty,
   getAllFaculty,
+  getASingleFaculty,
 };

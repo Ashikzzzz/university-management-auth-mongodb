@@ -11,6 +11,10 @@ router.post(
   academicFacultyController.createAcademicFaculty,
 );
 
+// get a single semester
+router.get('/:id', academicFacultyController.getASingleFaculty);
+
+// get all faculty with pagination search and filter
 router.get('/get-all-faculty', academicFacultyController.getAllFaculty);
 
 export const FacultyRoute = router;
