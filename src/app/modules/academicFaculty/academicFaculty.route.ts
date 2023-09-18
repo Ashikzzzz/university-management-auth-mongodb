@@ -17,6 +17,9 @@ router.patch('/:id', academicFacultyController.updateFaculty);
 // get a single semester
 router.get('/:id', academicFacultyController.getASingleFaculty);
 
+// delete faculty
+router.delete('/:id', academicFacultyController.deleteFaculty);
+
 // get all faculty with pagination search and filter
 router.get('/get-all-faculty', academicFacultyController.getAllFaculty);
 
