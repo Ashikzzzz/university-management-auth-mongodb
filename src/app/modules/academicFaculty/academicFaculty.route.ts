@@ -11,6 +11,9 @@ router.post(
   academicFacultyController.createAcademicFaculty,
 );
 
+// update a faculty
+router.patch('/:id', academicFacultyController.updateFaculty);
+
 // get a single semester
 router.get('/:id', academicFacultyController.getASingleFaculty);
 
