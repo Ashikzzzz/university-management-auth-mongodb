@@ -4,4 +4,4 @@ export type IAcademicFaculty = {
   title: string;
 };
 
-export type AcademicSemesterModel = Model<IAcademicFaculty>;
+export type AcademicFacultyModel = Model<IAcademicFaculty>;
