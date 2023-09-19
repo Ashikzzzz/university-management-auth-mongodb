@@ -684,3 +684,17 @@
   label: 'university Management',
   timestamp: '2023-09-19T16:58:13.504Z'
 }
+{
+  message: 'database is connected successfully',
+  level: 'info',
+  service: 'user-service',
+  label: 'university Management',
+  timestamp: '2023-09-19T16:58:26.720Z'
+}
+{
+  message: 'app is listening in the 5000',
+  level: 'info',
+  service: 'user-service',
+  label: 'university Management',
+  timestamp: '2023-09-19T16:58:26.731Z'
+}

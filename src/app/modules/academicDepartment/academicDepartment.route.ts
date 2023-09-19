@@ -13,7 +13,11 @@ router.post(
 );
 
 // update a department
+
 router.patch('/:id', academicDepartmentController.updateDepartment);
+
+// delete a department
+router.delete('/:id', academicDepartmentController.deleteDepartment);
 
 // get a single department
 router.get('/:id', academicDepartmentController.getASingleDepartment);

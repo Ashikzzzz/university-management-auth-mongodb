@@ -99,9 +99,19 @@ const updateDepartment = async (
   return result;
 };
 
+// delete a department
+
+const deleteDepartment = async (
+  id: string,
+): Promise<IAcademicDepartment | null> => {
+  const result = await AcademicDepartment.findByIdAndDelete(id);
+  return result;
+};
+
 export const academicDepartmentService = {
   createAcademicDepartment,
   getAllDepartment,
   getASingleDepartment,
   updateDepartment,
+  deleteDepartment,
 };
