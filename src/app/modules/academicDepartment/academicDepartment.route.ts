@@ -12,6 +12,9 @@ router.post(
   academicDepartmentController.createAcademicDepartment,
 );
 
+// update a department
+router.patch('/:id', academicDepartmentController.updateDepartment);
+
 // get a single department
 router.get('/:id', academicDepartmentController.getASingleDepartment);
 
