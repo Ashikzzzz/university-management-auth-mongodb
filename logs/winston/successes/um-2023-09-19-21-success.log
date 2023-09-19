@@ -54,3 +54,31 @@
   label: 'university Management',
   timestamp: '2023-09-19T15:55:37.213Z'
 }
+{
+  message: 'database is connected successfully',
+  level: 'info',
+  service: 'user-service',
+  label: 'university Management',
+  timestamp: '2023-09-19T15:55:45.490Z'
+}
+{
+  message: 'app is listening in the 5000',
+  level: 'info',
+  service: 'user-service',
+  label: 'university Management',
+  timestamp: '2023-09-19T15:55:45.523Z'
+}
+{
+  message: 'database is connected successfully',
+  level: 'info',
+  service: 'user-service',
+  label: 'university Management',
+  timestamp: '2023-09-19T15:56:45.558Z'
+}
+{
+  message: 'app is listening in the 5000',
+  level: 'info',
+  service: 'user-service',
+  label: 'university Management',
+  timestamp: '2023-09-19T15:56:45.604Z'
+}

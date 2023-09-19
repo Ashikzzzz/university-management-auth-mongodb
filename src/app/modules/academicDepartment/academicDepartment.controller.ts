@@ -4,6 +4,7 @@ import { academicDepartmentService } from './academicDepartment.service';
 import { responseForData } from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import { IAcademicDepartment } from './academicDepartment.interface';
+import pick from '../../../shared/pick';
 
 // create a academic department
 const createAcademicDepartment = catchAsync(
@@ -23,6 +24,32 @@ const createAcademicDepartment = catchAsync(
   },
 );
 
+// get all department with pagination filters search
+const getAllDepartment = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, ['searchTerm', 'title']);
+  const paginationOption = pick(req.query, [
+    'limit',
+    'page',
+    'sortBy',
+    'sortOrder',
+  ]);
+
+  const result = await academicDepartmentService.getAllDepartment(
+    filters,
+    paginationOption,
+  );
+
+  responseForData.sendResponse<IAcademicDepartment[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Department Getting Successful',
+    data: result.data,
+    meta: result.meta,
+  });
+  // next();
+});
+
 export const academicDepartmentController = {
   createAcademicDepartment,
+  getAllDepartment,
 };

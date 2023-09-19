@@ -12,4 +12,10 @@ router.post(
   academicDepartmentController.createAcademicDepartment,
 );
 
+// get all department
+router.get(
+  '/get-all-department',
+  academicDepartmentController.getAllDepartment,
+);
+
 export const DepartmentRoute = router;
