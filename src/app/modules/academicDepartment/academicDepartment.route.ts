@@ -12,6 +12,9 @@ router.post(
   academicDepartmentController.createAcademicDepartment,
 );
 
+// get a single department
+router.get('/:id', academicDepartmentController.getASingleDepartment);
+
 // get all department
 router.get(
   '/get-all-department',
