@@ -25,7 +25,7 @@ const createAcademicFaculty = catchAsync(
 
 // get all faculty with pagination filters search
 const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, ['searchTerm', 'title', 'code', 'year']);
+  const filters = pick(req.query, ['searchTerm', 'title']);
   const paginationOption = pick(req.query, [
     'limit',
     'page',
