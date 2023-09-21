@@ -3,12 +3,12 @@
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-06T19:58:47.820Z'
+  timestamp: '2023-09-21T09:52:01.459Z'
 }
 {
   message: 'app is listening in the 5000',
   level: 'info',
   service: 'user-service',
   label: 'university Management',
-  timestamp: '2023-09-06T19:58:47.847Z'
+  timestamp: '2023-09-21T09:52:01.499Z'
 }
