@@ -37,6 +37,10 @@ export const studentSchema = new Schema<IStudent>(
       required: true,
       unique: true,
     },
+    bloodGroup: {
+      type: String,
+      enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+    },
     contactNo: {
       type: String,
       required: true,
@@ -45,10 +49,7 @@ export const studentSchema = new Schema<IStudent>(
     emergencyContactNo: {
       type: String,
     },
-    bloodGroup: {
-      type: String,
-      enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
-    },
+
     presentAddress: {
       type: String,
       required: true,
