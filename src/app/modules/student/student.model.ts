@@ -125,7 +125,4 @@ export const studentSchema = new Schema<IStudent>(
   },
 );
 
-export const AcademicSemester = model<IStudent, StudentModel>(
-  'Student',
-  studentSchema,
-);
+export const Student = model<IStudent, StudentModel>('Student', studentSchema);
