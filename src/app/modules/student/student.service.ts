@@ -72,7 +72,14 @@ const getASingleStudent = async (id: string): Promise<IStudent | null> => {
   return result;
 };
 
+// delete a student
+const deleteStudent = async (id: string): Promise<IStudent | null> => {
+  const result = await Student.findByIdAndDelete(id);
+  return result;
+};
+
 export const studentService = {
   getAllStudent,
   getASingleStudent,
+  deleteStudent,
 };

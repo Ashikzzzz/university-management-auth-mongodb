@@ -6,6 +6,9 @@ const router = express.Router();
 // get a single student
 router.get('/:id', studentController.getASingleStudent);
 
+// delete a student
+router.delete('/:id', studentController.deleteStudent);
+
 // get all student
 router.get('/get-all-student', studentController.getAllStudent);
 
