@@ -7,10 +7,13 @@ import { IStudent } from '../student/student.interface';
 import { Student } from '../student/student.model';
 import { IUser } from './user.interface';
 import { User } from './user.model';
-import { generateStudentId } from './user.utils';
+import { generateFacultyId, generateStudentId } from './user.utils';
 import httpStatus from 'http-status';
 import { AcademicSemester } from '../academicSemester/academicSemester.model';
+import { IFaculty } from '../faculty/faculty.interface';
+import { Faculty } from '../faculty/faculty.model';
 
+// create a student
 const createStudent = async (
   user: IUser,
   student: IStudent,
@@ -79,6 +82,63 @@ const createStudent = async (
   return newUserAllData;
 };
 
+// create a faculty
+const createFaculty = async (
+  user: IUser,
+  faculty: IFaculty,
+): Promise<IUser | null> => {
+  if (!user.password) {
+    user.password = config.default_faculty_password as string;
+  }
+
+  user.role = 'faculty';
+
+  let newUserAllData = null;
+
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+    const id = await generateFacultyId();
+    // set custom id into both  faculty & user
+    user.id = id;
+    faculty.id = id;
+
+    const createFaculty = await Faculty.create([faculty], { session });
+
+    if (!createFaculty.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create faculty');
+    }
+    user.faculty = createFaculty[0]._id;
+    const newUser = await User.create([user], { session });
+
+    if (!newUser.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to Create user');
+    }
+    newUserAllData = newUser[0];
+    await session.commitTransaction();
+    await session.endSession();
+  } catch (error) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw error;
+  }
+  if (newUserAllData) {
+    newUserAllData = await User.findOne({ id: newUserAllData.id }).populate({
+      path: 'faculty',
+      populate: [
+        {
+          path: 'academicDepartment',
+        },
+        {
+          path: 'academicFaculty',
+        },
+      ],
+    });
+  }
+  return newUserAllData;
+};
+
 export const userService = {
   createStudent,
+  createFaculty,
 };

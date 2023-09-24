@@ -1,4 +1,4 @@
-import { Types } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { IAcademicDepartment } from '../academicDepartment/academicDepartment.interface';
 import { IAcademicFaculty } from '../academicFaculty/academicFaculty.interface';
 
@@ -20,8 +20,8 @@ export type IFaculty = {
   permanentAddress?: string;
   presentAddress?: string;
   bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
-
   academicDepartment: Types.ObjectId | IAcademicDepartment;
   academicFaculty: Types.ObjectId | IAcademicFaculty;
   designation: string;
 };
+export type facultyModel = Model<IFaculty, Record<string, unknown>>;
