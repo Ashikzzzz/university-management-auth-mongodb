@@ -7,11 +7,16 @@ import { IStudent } from '../student/student.interface';
 import { Student } from '../student/student.model';
 import { IUser } from './user.interface';
 import { User } from './user.model';
-import { generateFacultyId, generateStudentId } from './user.utils';
+import {
+  generateAdminId,
+  generateFacultyId,
+  generateStudentId,
+} from './user.utils';
 import httpStatus from 'http-status';
 import { AcademicSemester } from '../academicSemester/academicSemester.model';
 import { IFaculty } from '../faculty/faculty.interface';
 import { Faculty } from '../faculty/faculty.model';
+import { IAdmin } from '../admin/admin.interface';
 
 // create a student
 const createStudent = async (
@@ -138,7 +143,63 @@ const createFaculty = async (
   return newUserAllData;
 };
 
+// create a admin
+const createAdmin = async (
+  user: IUser,
+  admin: IAdmin,
+): Promise<IUser | null> => {
+  if (!user.password) {
+    user.password = config.default_faculty_password as string;
+  }
+
+  user.role = 'admin';
+
+  let newUserAllData = null;
+
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+    const id = await generateAdminId();
+    // set custom id into both  faculty & user
+    user.id = id;
+    admin.id = id;
+
+    const createAdmin = await Faculty.create([admin], { session });
+
+    if (!createAdmin.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create Admin');
+    }
+    user.admin = createAdmin[0]._id;
+    const newUser = await User.create([user], { session });
+
+    if (!newUser.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to Create user');
+    }
+    newUserAllData = newUser[0];
+    await session.commitTransaction();
+    await session.endSession();
+  } catch (error) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw error;
+  }
+  if (newUserAllData) {
+    newUserAllData = await User.findOne({ id: newUserAllData.id }).populate({
+      path: 'admin',
+      // populate: [
+      //   {
+      //     path: 'academicDepartment',
+      //   },
+      //   {
+      //     path: 'academicFaculty',
+      //   },
+      // ],
+    });
+  }
+  return newUserAllData;
+};
 export const userService = {
   createStudent,
   createFaculty,
+  createAdmin,
 };
