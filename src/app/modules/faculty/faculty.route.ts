@@ -9,6 +9,9 @@ router.get('/:id', facultyController.getASingleFaculty);
 // delete a faculty
 router.delete('/:id', facultyController.deleteFaculty);
 
+// update a faculty
+router.patch('/:id', facultyController.updateFaculty);
+
 // get all student
 router.get('/get-all-teacher', facultyController.getAllFaculty);
 

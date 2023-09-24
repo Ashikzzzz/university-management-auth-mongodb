@@ -78,8 +78,22 @@ const deleteFaculty = async (id: string): Promise<IFaculty | null> => {
   return result;
 };
 
+// update a faculty
+const updateFaculty = async (id: string, payload: Partial<IFaculty>) => {
+  //   console.log('update data', payload);
+  const result = await Faculty.findOneAndUpdate(
+    { _id: id },
+    { $set: payload },
+    {
+      new: true,
+    },
+  );
+  return result;
+};
+
 export const facultyService = {
   getAllFaculty,
   getASingleFaculty,
   deleteFaculty,
+  updateFaculty,
 };
