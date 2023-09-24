@@ -6,6 +6,7 @@ import { responseForData } from '../../../shared/sendResponse';
 import { IFaculty } from './faculty.interface';
 import httpStatus from 'http-status';
 
+// get all faculty
 const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, [
     'name.firstName',
@@ -32,6 +33,20 @@ const getAllFaculty = catchAsync(async (req: Request, res: Response) => {
   // next();
 });
 
+// get a single faculty
+const getASingleFaculty = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result = await facultyService.getASingleFaculty(id);
+
+  responseForData.sendResponseForCreate<IFaculty>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Faculty Getting Successful',
+    data: result,
+  });
+});
+
 export const facultyController = {
   getAllFaculty,
+  getASingleFaculty,
 };

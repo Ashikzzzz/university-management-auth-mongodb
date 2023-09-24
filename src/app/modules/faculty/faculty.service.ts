@@ -3,6 +3,7 @@ import { IPaginationOption } from '../../../interfaces/pagination';
 import { IFaculty, IFacultyFilters } from './faculty.interface';
 import { Faculty } from './faculty.model';
 
+// get all faculty
 const getAllFaculty = async (
   filters: IFacultyFilters,
   paginationOption: IPaginationOption,
@@ -65,6 +66,13 @@ const getAllFaculty = async (
   };
 };
 
+// get a single faculty
+const getASingleFaculty = async (id: string): Promise<IFaculty | null> => {
+  const result = await Faculty.findById(id);
+  return result;
+};
+
 export const facultyService = {
   getAllFaculty,
+  getASingleFaculty,
 };
