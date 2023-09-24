@@ -460,3 +460,17 @@
   label: 'university Management',
   timestamp: '2023-09-24T20:23:04.492Z'
 }
+{
+  message: 'database is connected successfully',
+  level: 'info',
+  service: 'user-service',
+  label: 'university Management',
+  timestamp: '2023-09-24T20:27:23.907Z'
+}
+{
+  message: 'app is listening in the 5000',
+  level: 'info',
+  service: 'user-service',
+  label: 'university Management',
+  timestamp: '2023-09-24T20:27:23.927Z'
+}

@@ -22,3 +22,7 @@ export type IAdmin = {
   designation: string;
 };
 export type AdminModel = Model<IAdmin, Record<string, unknown>>;
+
+export type IAdminFilters = {
+  searchTerm?: string;
+};
