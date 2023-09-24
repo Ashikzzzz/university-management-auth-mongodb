@@ -63,12 +63,15 @@ export const studentSchema = new Schema<IStudent>(
       type: {
         fatherName: {
           type: String,
+          required: true,
         },
         fatherOccupation: {
           type: String,
+          required: true,
         },
         fatherNo: {
           type: String,
+          required: true,
         },
         motherName: {
           type: String,
@@ -76,9 +79,11 @@ export const studentSchema = new Schema<IStudent>(
         },
         motherOccupation: {
           type: String,
+          required: true,
         },
         motherNo: {
           type: String,
+          required: true,
         },
       },
     },
@@ -92,12 +97,15 @@ export const studentSchema = new Schema<IStudent>(
         },
         occupation: {
           type: String,
+          required: true,
         },
         contactNo: {
           type: String,
+          required: true,
         },
         address: {
           type: String,
+          required: true,
         },
       },
     },

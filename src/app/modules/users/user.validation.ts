@@ -31,30 +31,55 @@ const createUserZodSchema = z.object({
         required_error: 'Contact No is Required',
       }),
       emergencyContactNo: z.string().optional(),
-    }),
-    presentAddress: z.string({
-      required_error: 'Address is required',
-    }),
-    permanentAddress: z.string({
-      required_error: 'permanent Address is required',
-    }),
-    gurdian: z.object({
-      fatherName: z.string().optional(),
-      fatherOccupation: z.string().optional(),
-      fatherNo: z.string().optional(),
-      motherName: z.string({
-        required_error: 'mother Name is required',
+      presentAddress: z.string({
+        required_error: 'Address is required',
       }),
-      motherOccupation: z.string().optional(),
-      motherNo: z.string().optional(),
-    }),
-    localGurdian: z.object({
-      name: z.string({
-        required_error: 'Name is require',
+      permanentAddress: z.string({
+        required_error: 'permanent Address is required',
       }),
-      occupation: z.string().optional(),
-      contactNo: z.string().optional(),
-      address: z.string().optional(),
+      gurdian: z.object({
+        fatherName: z.string({
+          required_error: 'Father name is required',
+        }),
+        fatherOccupation: z.string({
+          required_error: 'Father occupation is Required',
+        }),
+        fatherNo: z.string({
+          required_error: 'Father number is Required',
+        }),
+        motherName: z.string({
+          required_error: 'mother Name is required',
+        }),
+        motherOccupation: z.string({
+          required_error: 'Mother occupation is required',
+        }),
+        motherNo: z.string({
+          required_error: 'Mother number is Required',
+        }),
+      }),
+      localGurdian: z.object({
+        name: z.string({
+          required_error: 'Name is require',
+        }),
+        occupation: z.string({
+          required_error: 'This filed is required',
+        }),
+        contactNo: z.string({
+          required_error: 'This filed is required',
+        }),
+        address: z.string({
+          required_error: 'This filed is required',
+        }),
+      }),
+      academicSemester: z.string({
+        required_error: 'Academic semester is required',
+      }),
+      academicDepartment: z.string({
+        required_error: 'Academic department is required',
+      }),
+      academicFaculty: z.string({
+        required_error: 'Academic faculty is required',
+      }),
     }),
   }),
 });
