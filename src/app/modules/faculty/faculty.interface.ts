@@ -25,3 +25,7 @@ export type IFaculty = {
   designation: string;
 };
 export type facultyModel = Model<IFaculty, Record<string, unknown>>;
+
+export type IFacultyFilters = {
+  searchTerm?: string;
+};

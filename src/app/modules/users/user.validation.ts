@@ -87,7 +87,6 @@ const createStudentZodSchema = z.object({
 });
 
 // faculty validation zod schema
-
 const createFacultyZodSchema = z.object({
   body: z.object({
     password: z.string().optional(),
