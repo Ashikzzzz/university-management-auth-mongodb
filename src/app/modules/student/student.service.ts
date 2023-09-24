@@ -66,6 +66,13 @@ const getAllStudent = async (
   };
 };
 
+// get a single student
+const getASingleStudent = async (id: string): Promise<IStudent | null> => {
+  const result = await Student.findById(id);
+  return result;
+};
+
 export const studentService = {
   getAllStudent,
+  getASingleStudent,
 };
