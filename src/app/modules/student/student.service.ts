@@ -78,8 +78,22 @@ const deleteStudent = async (id: string): Promise<IStudent | null> => {
   return result;
 };
 
+// update a student
+const updateStudent = async (id: string, payload: Partial<IStudent>) => {
+  //   console.log('update data', payload);
+  const result = await Student.findOneAndUpdate(
+    { _id: id },
+    { $set: payload },
+    {
+      new: true,
+    },
+  );
+  return result;
+};
+
 export const studentService = {
   getAllStudent,
   getASingleStudent,
   deleteStudent,
+  updateStudent,
 };
