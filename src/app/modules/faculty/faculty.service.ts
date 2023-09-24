@@ -72,7 +72,14 @@ const getASingleFaculty = async (id: string): Promise<IFaculty | null> => {
   return result;
 };
 
+// delete a faculty
+const deleteFaculty = async (id: string): Promise<IFaculty | null> => {
+  const result = await Faculty.findByIdAndDelete(id);
+  return result;
+};
+
 export const facultyService = {
   getAllFaculty,
   getASingleFaculty,
+  deleteFaculty,
 };
