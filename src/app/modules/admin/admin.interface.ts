@@ -1,4 +1,5 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
+import { IManagementDepartment } from '../managementDepartment/managementDepartment.interface';
 
 export type UserName = {
   firstName: string;
@@ -18,7 +19,7 @@ export type IAdmin = {
   permanentAddress?: string;
   presentAddress?: string;
   bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
-  //   managementDepartment: Types.ObjectId | IManagementDepartment;
+  managementDepartment: Types.ObjectId | IManagementDepartment;
   designation: string;
 };
 export type AdminModel = Model<IAdmin, Record<string, unknown>>;

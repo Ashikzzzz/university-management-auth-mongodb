@@ -193,14 +193,14 @@ const createAdminZodSchema = z.object({
         required_error: 'Permanent address is required',
       }),
 
-      // managementDepartment: z.string({
-      //   required_error: 'Management department is required',
-      // }),
+      managementDepartment: z.string({
+        required_error: 'Management department is required',
+      }),
 
       designation: z.string({
         required_error: 'Designation is required',
       }),
-      profileImage: z.string().optional(),
+      // profileImage: z.string().optional(),
     }),
   }),
 });
