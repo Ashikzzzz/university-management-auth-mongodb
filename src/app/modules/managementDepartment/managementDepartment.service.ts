@@ -72,7 +72,42 @@ const getAllManagementDepartment = async (
   };
 };
 
+// get a single department
+const getASingleManagementDepartment = async (
+  id: string,
+): Promise<IManagementDepartment | null> => {
+  const result = await ManagementDepartment.findById(id);
+  return result;
+};
+
+// delete a management department
+const deleteManagementDepartment = async (
+  id: string,
+): Promise<IManagementDepartment | null> => {
+  const result = await ManagementDepartment.findByIdAndDelete(id);
+  return result;
+};
+
+// update management department
+const updateManagementDepartment = async (
+  id: string,
+  payload: Partial<IManagementDepartment>,
+) => {
+  //   console.log('update data', payload);
+  const result = await ManagementDepartment.findOneAndUpdate(
+    { _id: id },
+    { $set: payload },
+    {
+      new: true,
+    },
+  );
+  return result;
+};
+
 export const managementDepartmentService = {
   createDepartment,
   getAllManagementDepartment,
+  getASingleManagementDepartment,
+  deleteManagementDepartment,
+  updateManagementDepartment,
 };

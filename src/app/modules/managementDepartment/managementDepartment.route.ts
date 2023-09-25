@@ -13,6 +13,23 @@ router.post(
   managementDepartmentController.createDepartment,
 );
 
+// get a single management department
+router.get('/:id', managementDepartmentController.getASingleDepartment);
+
+// update management department
+router.patch(
+  '/:id',
+  validateRequest(
+    managementDepartmentValidation.createManagementDepartmentZodSchema,
+  ),
+  managementDepartmentController.updateManagementDepartment,
+);
+// delete management department
+router.delete(
+  '/:id',
+  managementDepartmentController.deleteManagementDepartment,
+);
+
 // get all management department
 router.get(
   '/all-management-department',

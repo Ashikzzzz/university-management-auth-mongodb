@@ -46,7 +46,60 @@ const getAllDepartment = catchAsync(async (req: Request, res: Response) => {
   // next();
 });
 
+// get a single department
+const getASingleDepartment = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const result =
+    await managementDepartmentService.getASingleManagementDepartment(id);
+
+  responseForData.sendResponseForCreate<IManagementDepartment>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Faculty Getting Successful',
+    data: result,
+  });
+});
+
+// delete management department
+const deleteManagementDepartment = catchAsync(
+  async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const result =
+      await managementDepartmentService.deleteManagementDepartment(id);
+
+    responseForData.sendResponseForCreate<IManagementDepartment>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Academic Semester Delete Successful',
+      data: result,
+    });
+  },
+);
+
+// update management departnmeent
+const updateManagementDepartment = catchAsync(
+  async (req: Request, res: Response) => {
+    const id = req.params.id;
+    const managementDepartment = req.body;
+    // console.log(managementDepartment);
+    const result = await managementDepartmentService.updateManagementDepartment(
+      id,
+      managementDepartment,
+    );
+
+    responseForData.sendResponseForCreate<IManagementDepartment>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'management department Update Successful',
+      data: result,
+    });
+  },
+);
+
 export const managementDepartmentController = {
   createDepartment,
+  deleteManagementDepartment,
   getAllDepartment,
+  getASingleDepartment,
+  updateManagementDepartment,
 };
