@@ -17,6 +17,7 @@ import { AcademicSemester } from '../academicSemester/academicSemester.model';
 import { IFaculty } from '../faculty/faculty.interface';
 import { Faculty } from '../faculty/faculty.model';
 import { IAdmin } from '../admin/admin.interface';
+import { Admin } from '../admin/admin.model';
 
 // create a student
 const createStudent = async (
@@ -149,7 +150,7 @@ const createAdmin = async (
   admin: IAdmin,
 ): Promise<IUser | null> => {
   if (!user.password) {
-    user.password = config.default_faculty_password as string;
+    user.password = config.default_admin_password as string;
   }
 
   user.role = 'admin';
@@ -164,7 +165,7 @@ const createAdmin = async (
     user.id = id;
     admin.id = id;
 
-    const createAdmin = await Faculty.create([admin], { session });
+    const createAdmin = await Admin.create([admin], { session });
 
     if (!createAdmin.length) {
       throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create Admin');
