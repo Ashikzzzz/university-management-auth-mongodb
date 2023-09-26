@@ -6,11 +6,6 @@
     "auditLog": "C:\\projects\\university-management\\logs\\winston\\successes\\.e9d9c2537b1184d6af2aef96ae5af89dd517fb83-audit.json",
     "files": [
         {
-            "date": 1694460376583,
-            "name": "C:\\projects\\university-management\\logs\\winston\\successes\\um-2023-09-12-01-success.log",
-            "hash": "e26ffc6bbc32238f54daf1ec5e12b13d0197bc30dda058a54afd16bfddcb48db"
-        },
-        {
             "date": 1694514001420,
             "name": "C:\\projects\\university-management\\logs\\winston\\successes\\um-2023-09-12-16-success.log",
             "hash": "074f2b1b3283bc93d3ee721a3a6f5d9cf5df0d56d0d2a815900be3130554f010"
@@ -304,6 +299,11 @@
             "date": 1695661568399,
             "name": "C:\\projects\\university-management\\logs\\winston\\successes\\um-2023-09-25-23-success.log",
             "hash": "b253d52d3c5ce7e313c4c847d44c552f36d8837edcc8b421c1659f3d3d659703"
+        },
+        {
+            "date": 1695701520085,
+            "name": "C:\\projects\\university-management\\logs\\winston\\successes\\um-2023-09-26-10-success.log",
+            "hash": "d268980f27fca80d4ab5256b822efa0e69e8781a1d465f4b65b43f7443684078"
         }
     ],
     "hashType": "sha256"
