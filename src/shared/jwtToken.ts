@@ -1,4 +1,5 @@
-import jwt, { Secret } from 'jsonwebtoken';
+import jwt, { JwtPayload, Secret } from 'jsonwebtoken';
+// import config from '../config';
 
 const createToken = (
   payload: object,
@@ -8,6 +9,14 @@ const createToken = (
   return jwt.sign(payload, secret, option);
 };
 
+const verifyToken = async (
+  token: string,
+  secret: Secret,
+): Promise<jwt.JwtPayload> => {
+  return jwt.verify(token, secret) as JwtPayload;
+};
+
 export const jwtToken = {
   createToken,
+  verifyToken,
 };
