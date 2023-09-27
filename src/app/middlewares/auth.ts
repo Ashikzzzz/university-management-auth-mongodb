@@ -24,11 +24,16 @@ const auth =
       );
 
       req.user = verifyToken;
+
+      // role guard
+      if (role.length && !role.includes(verifyToken.role)) {
+        throw new ApiError(httpStatus.UNAUTHORIZED, 'You have no access');
+      }
+
+      next();
     } catch (error) {
       next(error);
     }
   };
 
-export const authorizationUser = {
-  auth,
-};
+export default auth;
