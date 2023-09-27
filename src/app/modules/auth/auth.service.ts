@@ -2,12 +2,13 @@ import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiErrors';
 import { User } from '../users/user.model';
 import {
+  IChangePassword,
   ILoginUser,
   ILoginUserResponse,
   IRefreshTokenResponse,
 } from './auth.interface';
 import bcrypt from 'bcrypt';
-import { Secret } from 'jsonwebtoken';
+import { JwtPayload, Secret } from 'jsonwebtoken';
 import config from '../../../config';
 import { jwtToken } from '../../../shared/jwtToken';
 
@@ -97,7 +98,51 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   };
 };
 
+// change password
+const changePassword = async (
+  user: JwtPayload | null,
+  payload: IChangePassword,
+): Promise<void> => {
+  const { oldPassword, newPassword } = payload;
+  console.log('payload', payload);
+
+  // const { userId } = user;
+  const isUserExist = await User.findOne({ id: user?.userId }).select(
+    'password',
+  );
+  if (!isUserExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, "User doesn't exist");
+  }
+  console.log('isUserExist', isUserExist);
+  // check old password
+
+  const isPasswordMatched = await bcrypt.compare(
+    oldPassword,
+    isUserExist.password,
+  );
+  console.log('isPasswordMatched', isPasswordMatched);
+
+  if (!isPasswordMatched) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, "old Password isn't matched");
+  }
+
+  // hash password
+  const newHashedPassword = await bcrypt.hash(
+    newPassword,
+    Number(config.bcrypt_salt_round),
+  );
+  console.log('newHashedPassword', newHashedPassword);
+  // update the pass
+  const updateData = {
+    password: newHashedPassword,
+    newHashedPassword: false,
+    passwordChangeAt: new Date(),
+  };
+  await User.findOneAndUpdate({ id: user?.userId }, updateData);
+};
+
 export const authService = {
   loginUser,
   refreshToken,
+  changePassword,
 };

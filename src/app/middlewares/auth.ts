@@ -9,7 +9,8 @@ const auth =
   (...role: string[]) =>
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const token = req?.headers?.token; // get token
+      const token = req?.headers?.authorization; // get token
+      console.log('token', token);
       // check token
       if (!token) {
         throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not Authorized');
@@ -20,7 +21,7 @@ const auth =
       // verify token
       verifyToken = await jwtToken.verifyToken(
         token as string,
-        config.jwt_expires_in as Secret,
+        config.jwt_secret as Secret,
       );
 
       req.user = verifyToken;
