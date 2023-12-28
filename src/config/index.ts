@@ -15,4 +15,7 @@ export default {
   jwt_expires_in: process.env.JWT_EXPIRES_IN,
   jwt_refresh_token: process.env.JWT_REFRESH_TOKEN,
   jwt_refresh_expires_in: process.env.JWT_REFRESH_EXPIRES_IN,
+  redis: {
+    url: process.env.REDIS_URL,
+  },
 };
