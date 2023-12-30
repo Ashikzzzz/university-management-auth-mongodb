@@ -3,6 +3,7 @@ import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOption } from '../../../interfaces/pagination';
 import {
   IAcademicSemester,
+  IAcademicSemesterCreatedEvent,
   IAcademicSemesterFilters,
 } from './academicSemester.interface';
 import { AcademicSemester } from './academicSemester.model';
@@ -119,10 +120,25 @@ const deleteSemester = async (
   return result;
 };
 
+// create semester from event
+const createAcademicSemesterFromEvent = async (
+  e: IAcademicSemesterCreatedEvent,
+): Promise<void> => {
+  await AcademicSemester.create({
+    title: e.title,
+    year: e.year,
+    code: e.code,
+    startMonth: e.startMonth,
+    endMonth: e.endMonth,
+    syncId: e.id,
+  });
+};
+
 export const academicSemesterService = {
   createAcademicSemester,
   getAllSemester,
   getASingleSemester,
   updateSemeter,
   deleteSemester,
+  createAcademicSemesterFromEvent,
 };
