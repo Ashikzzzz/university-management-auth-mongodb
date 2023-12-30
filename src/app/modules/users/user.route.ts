@@ -26,7 +26,7 @@ router.post(
 // create a admin
 router.post(
   '/create-admin',
-  auth(ENUM_USER_ROLE.SUPER_ADMIN),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(userValidation.createAdminZodSchema),
   userController.createAdmin,
 );

@@ -2,11 +2,14 @@ import express from 'express';
 import validateRequest from '../../middlewares/validateRequest';
 import { academicSemesterValidation } from './academicSemester.validation';
 import { academicSemesterController } from './academicSemester.controller';
+import auth from '../../middlewares/auth';
+import { ENUM_USER_ROLE } from '../../../enums/user';
 
 const router = express.Router();
 
 router.post(
-  '/create-academic-semester',
+  '/',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
   validateRequest(academicSemesterValidation.academicSemesterZodSchema),
   academicSemesterController.createAcademicSemester,
 );
